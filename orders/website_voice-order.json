@@ -1,0 +1,142 @@
+{
+  "name": "Website Voice — UI Click Announcements",
+  "description": "UI sound-effect voice for click and interaction events on a website. Short, clipped utterances triggered by common HTML interactions: buttons, links, form submits, toggles, copy actions, modals, and navigation. 78 atoms — within the 100-atom cap. Pair with a pinned VoiceProfile for a consistent site-wide audio identity.",
+  "version": "1.0.0",
+  "contexts": {
+    "button_click": {
+      "tier": 1,
+      "prosody_tag": "clipped",
+      "trigger_hints": [
+        "Generic <button> click",
+        "Primary CTA on a page"
+      ],
+      "templates": [
+        "{click_ack}.",
+        "{click_ack}, {action}."
+      ]
+    },
+    "link_navigate": {
+      "tier": 1,
+      "prosody_tag": "neutral",
+      "trigger_hints": [
+        "<a> click that changes route or scrolls to anchor",
+        "Menu item selected"
+      ],
+      "templates": [
+        "Going to {destination}.",
+        "{destination}."
+      ]
+    },
+    "toggle_state": {
+      "tier": 1,
+      "prosody_tag": "clipped",
+      "trigger_hints": [
+        "Checkbox, switch, or radio toggle",
+        "Theme switcher, mute button, expand/collapse"
+      ],
+      "templates": [
+        "{state}.",
+        "{toggle_target} {state}."
+      ]
+    },
+    "form_submit": {
+      "tier": 2,
+      "prosody_tag": "confident",
+      "trigger_hints": [
+        "<form onsubmit> fired and validation passed",
+        "Save or send action"
+      ],
+      "templates": [
+        "{success_word}.",
+        "{success_word}, {form_outcome}."
+      ]
+    },
+    "form_error": {
+      "tier": 2,
+      "prosody_tag": "apologetic",
+      "trigger_hints": [
+        "Validation failure on a field or whole form",
+        "Network error during submit"
+      ],
+      "templates": [
+        "Check {field_target}.",
+        "Something's off with {field_target}."
+      ]
+    },
+    "copy_confirm": {
+      "tier": 2,
+      "prosody_tag": "satisfied",
+      "trigger_hints": [
+        "Copy-to-clipboard button",
+        "Share link copied"
+      ],
+      "templates": [
+        "Copied.",
+        "{success_word}, copied."
+      ]
+    },
+    "modal_open": {
+      "tier": 2,
+      "prosody_tag": "neutral",
+      "trigger_hints": [
+        "Modal, dialog, or drawer opens",
+        "Tooltip or popover surfaces"
+      ],
+      "templates": [
+        "Opening {surface}.",
+        "{surface}."
+      ]
+    },
+    "modal_close": {
+      "tier": 2,
+      "prosody_tag": "neutral",
+      "trigger_hints": [
+        "Modal or drawer dismissed",
+        "Escape key on overlay"
+      ],
+      "templates": [
+        "Closed.",
+        "Dismissed."
+      ]
+    },
+    "hover_focus": {
+      "tier": 3,
+      "prosody_tag": "soft",
+      "trigger_hints": [
+        "Mouseenter or focus on an interactive element",
+        "Use sparingly — hover sounds get fatiguing"
+      ],
+      "templates": [
+        "{focus_word}."
+      ]
+    },
+    "page_ready": {
+      "tier": 3,
+      "prosody_tag": "warm",
+      "trigger_hints": [
+        "DOMContentLoaded or first meaningful paint",
+        "Single-page-app route arrival"
+      ],
+      "templates": [
+        "Ready.",
+        "Welcome.",
+        "Here we go."
+      ]
+    }
+  },
+  "pools": {
+    "click_ack": ["Got it", "Okay", "Right", "Selected"],
+    "action": ["going", "loading", "fetching", "saving"],
+    "destination": ["home", "about", "contact", "settings", "the next page"],
+    "state": ["on", "off", "enabled", "disabled"],
+    "toggle_target": ["dark mode", "sound", "notifications"],
+    "success_word": ["Done", "Sent", "Saved"],
+    "form_outcome": ["thanks", "all set", "received"],
+    "field_target": ["that field", "the email", "the password", "the form"],
+    "surface": ["menu", "dialog", "panel", "details"],
+    "focus_word": ["Hover", "Focus", "Hm"]
+  },
+  "install": {
+    "max_atoms": 100
+  }
+}
