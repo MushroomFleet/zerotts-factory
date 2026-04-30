@@ -1,0 +1,153 @@
+{
+  "name": "Movie Trailers — Stock Voiceover",
+  "description": "A semi-self-aware trailer voiceover artist recording stock commentary for unspecified films. Vocabulary is deliberately genre-ambiguous so atoms can be spliced into thrillers, romcoms, sci-fi, dramas, horrors, or family films. Register: portentous trailer-voice with a knowing wink. 93 atoms — within the 100-atom cap.",
+  "version": "1.0.0",
+  "contexts": {
+    "world_setup": {
+      "tier": 1,
+      "prosody_tag": "portentous",
+      "trigger_hints": [
+        "Opening world-state line — 'in a world where...'",
+        "First voice-over after the studio logo"
+      ],
+      "templates": [
+        "In a world {world_clause}.",
+        "{time_phrase}, {world_clause}."
+      ]
+    },
+    "protagonist_intro": {
+      "tier": 1,
+      "prosody_tag": "weighted",
+      "trigger_hints": [
+        "Introducing the lead — name and identity unknown",
+        "Cuts to character on screen for the first time"
+      ],
+      "templates": [
+        "One {protagonist_noun}.",
+        "One {protagonist_noun}, {protagonist_clause}.",
+        "Meet {vague_referent}."
+      ]
+    },
+    "stakes_escalate": {
+      "tier": 1,
+      "prosody_tag": "rising",
+      "trigger_hints": [
+        "Mid-trailer beat — the conflict tightens",
+        "Music swells, cuts get faster"
+      ],
+      "templates": [
+        "But {stakes_clause}.",
+        "Now {stakes_clause}.",
+        "Everything changes."
+      ]
+    },
+    "three_act_tease": {
+      "tier": 2,
+      "prosody_tag": "measured",
+      "trigger_hints": [
+        "The classic three-beat structure — first, then, finally",
+        "Use one beat per cut"
+      ],
+      "templates": [
+        "First, {tease_clause}.",
+        "Then, {tease_clause}.",
+        "Finally, {tease_clause}."
+      ]
+    },
+    "tagline_drop": {
+      "tier": 2,
+      "prosody_tag": "low_landing",
+      "trigger_hints": [
+        "The pull-quote moment — short, lands hard",
+        "Often follows a beat of silence"
+      ],
+      "templates": [
+        "{tagline_phrase}.",
+        "Sometimes, {tagline_phrase}."
+      ]
+    },
+    "self_aware_aside": {
+      "tier": 2,
+      "prosody_tag": "wry",
+      "trigger_hints": [
+        "Persona briefly acknowledges the canned nature of the take",
+        "Use sparingly — the wink is the seasoning, not the dish"
+      ],
+      "templates": [
+        "Whatever this film turns out to be — {tagline_phrase}.",
+        "I'm told it's {filler_descriptor}."
+      ]
+    },
+    "cast_call": {
+      "tier": 3,
+      "prosody_tag": "announcer",
+      "trigger_hints": [
+        "Star-billing card — names unknown, so we hedge",
+        "Splice over the cast title cards"
+      ],
+      "templates": [
+        "Starring an extraordinary cast.",
+        "From {creator_role} you know.",
+        "An unforgettable ensemble."
+      ]
+    },
+    "release_sting": {
+      "tier": 3,
+      "prosody_tag": "final_landing",
+      "trigger_hints": [
+        "The release-date drop at the very end",
+        "Vague seasonal phrasing keeps atoms reusable"
+      ],
+      "templates": [
+        "{release_window}.",
+        "Coming {release_window}.",
+        "Only in theatres."
+      ]
+    }
+  },
+  "pools": {
+    "world_clause": [
+      "where nothing is what it seems",
+      "where everything has changed",
+      "on the edge of something",
+      "beyond what anyone imagined"
+    ],
+    "time_phrase": ["This summer", "This winter", "Long ago", "Not so long from now"],
+    "protagonist_noun": ["man", "woman", "stranger", "hero"],
+    "protagonist_clause": [
+      "with nothing to lose",
+      "out of time",
+      "running out of options",
+      "facing the impossible"
+    ],
+    "vague_referent": ["our hero", "the one they didn't expect", "a face you'll remember"],
+    "stakes_clause": [
+      "everything is on the line",
+      "there's no turning back",
+      "the truth comes out",
+      "the rules don't apply"
+    ],
+    "tease_clause": [
+      "a choice",
+      "a discovery",
+      "a betrayal",
+      "a reckoning"
+    ],
+    "tagline_phrase": [
+      "the only way out is through",
+      "some stories find you",
+      "every legend has a beginning",
+      "the past never stays buried"
+    ],
+    "filler_descriptor": [
+      "a story for our times",
+      "something special",
+      "an unforgettable journey"
+    ],
+    "creator_role": ["the studio", "the producers", "the director"],
+    "release_window": ["this summer", "this fall", "this winter", "soon"]
+  },
+  "install": {
+    "max_atoms": 100
+  }
+}
