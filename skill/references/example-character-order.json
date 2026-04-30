@@ -1,0 +1,110 @@
+{
+  "name": "Generic Agent — Reference Order",
+  "description": "Reference order demonstrating every feature of the ZeroTTS-Factory order schema: tiered contexts, multi-slot templates, shared pools, slot-less flat templates, and prosody hints. ~58 atoms total — well within the 100-atom cap. Use this as a starting point for your own characters.",
+  "version": "1.0.0",
+  "contexts": {
+    "greeting": {
+      "tier": 1,
+      "prosody_tag": "warm",
+      "trigger_hints": [
+        "First time the user opens the chat",
+        "Persona returns from idle"
+      ],
+      "templates": [
+        "{salute}, {persona_address}."
+      ]
+    },
+    "acknowledgement": {
+      "tier": 1,
+      "prosody_tag": "confident",
+      "trigger_hints": [
+        "User has given an instruction; persona is about to act",
+        "Filler before tool invocation or LLM round-trip"
+      ],
+      "templates": [
+        "{ack}, give me a moment.",
+        "{ack}, on it."
+      ]
+    },
+    "tool_invocation": {
+      "tier": 1,
+      "prosody_tag": "confident",
+      "trigger_hints": [
+        "Persona is about to call a registered tool",
+        "Should always cover every tool name in the {tool} pool"
+      ],
+      "templates": [
+        "I'll use the {tool} now.",
+        "{ack}, reaching for the {tool}."
+      ]
+    },
+    "progress": {
+      "tier": 2,
+      "prosody_tag": "casual",
+      "trigger_hints": [
+        "Long-running operation; persona checks in to keep user engaged"
+      ],
+      "templates": [
+        "Still working on it.",
+        "This is taking a bit longer than expected.",
+        "Nearly there.",
+        "One more moment."
+      ]
+    },
+    "completion": {
+      "tier": 2,
+      "prosody_tag": "satisfied",
+      "trigger_hints": [
+        "Persona has finished its task and is handing the result back"
+      ],
+      "templates": [
+        "{success_word}, {result_quality}."
+      ]
+    },
+    "error_recovery": {
+      "tier": 2,
+      "prosody_tag": "apologetic",
+      "trigger_hints": [
+        "A tool call failed or returned unexpected data; persona is going to retry"
+      ],
+      "templates": [
+        "Something went wrong — let me try {retry_phrase}."
+      ]
+    },
+    "clarification": {
+      "tier": 3,
+      "prosody_tag": "curious",
+      "trigger_hints": [
+        "Persona needs more information before continuing"
+      ],
+      "templates": [
+        "Could you tell me more about {clarify_target}?"
+      ]
+    },
+    "farewell": {
+      "tier": 3,
+      "prosody_tag": "warm",
+      "trigger_hints": [
+        "End of conversation; user is leaving"
+      ],
+      "templates": [
+        "Take care.",
+        "Talk soon.",
+        "Goodbye for now."
+      ]
+    }
+  },
+  "pools": {
+    "salute": ["Hello", "Hi", "Hey there"],
+    "persona_address": ["friend", "there"],
+    "ack": ["Sure", "Right", "Okay", "Got it", "Alright"],
+    "tool": ["web search", "calculator", "file system", "database"],
+    "success_word": ["Done", "Finished", "Complete"],
+    "result_quality": ["here you go", "as requested"],
+    "retry_phrase": ["that again", "another approach"],
+    "clarify_target": ["what you mean", "the goal", "the timing"]
+  },
+  "install": {
+    "max_atoms": 100
+  }
+}
