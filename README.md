@@ -195,3 +195,26 @@ Issues and PRs welcome. The codebase aims to:
 - Match upstream schemas where reasonable, diverge clearly where not.
 - Surface deterministic, reproducible audio as the primary value.
 - Trust the engine — UI defaults to hidden engine internals (override locks were removed in v0.2.0 per QA).
+
+---
+
+## 📚 Citation
+
+### Academic Citation
+
+If you use this codebase in your research or project, please cite:
+
+```bibtex
+@software{zerotts_factory_2025,
+  title   = {ZeroTTS-Factory: Browser-based deterministic speech factory built on Kokoro WASM TTS},
+  author  = {Drift Johnson},
+  year    = {2025},
+  url     = {https://github.com/MushroomFleet/zerotts-factory},
+  version = {0.2.0}
+}
+```
+
+### Donate:
+
+
+[![Ko-Fi](https://cdn.ko-fi.com/cdn/kofi3.png?v=3)](https://ko-fi.com/driftjohnson)
