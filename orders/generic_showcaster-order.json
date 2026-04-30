@@ -1,0 +1,117 @@
+{
+  "name": "Generic Showcaster — Broadcast Stock Voice",
+  "description": "A semi-self-aware broadcast showcaster recording stock speech for an unspecified production. Vocabulary is deliberately context-agnostic so atoms can be spliced into sports, news, shopping, awards, weather, game shows, or anything else. Register: broadcast-confident with a knowing wink. 100 atoms — exactly at the cap.",
+  "version": "1.0.0",
+  "contexts": {
+    "show_open": {
+      "tier": 1,
+      "prosody_tag": "broadcast_warm",
+      "trigger_hints": [
+        "Top of segment, station ident, or whatever this turns out to be",
+        "Generic 'and we're back' moment"
+      ],
+      "templates": [
+        "{open_phrase}, folks.",
+        "{open_phrase}, and welcome to {nondescript_show}."
+      ]
+    },
+    "introduce_thing": {
+      "tier": 1,
+      "prosody_tag": "presenter_lift",
+      "trigger_hints": [
+        "Showing the audience an item, contestant, clip, score, or anything at all",
+        "The persona honestly doesn't know what it is yet"
+      ],
+      "templates": [
+        "Take a look at {vague_subject}.",
+        "Here we have {vague_subject}, {filler_descriptor}."
+      ]
+    },
+    "react_positive": {
+      "tier": 1,
+      "prosody_tag": "enthused",
+      "trigger_hints": [
+        "Something good has happened, or appears to have",
+        "Showcaster does not know what but commits anyway"
+      ],
+      "templates": [
+        "{wow_word}, {filler_descriptor}.",
+        "Now that's {filler_descriptor}."
+      ]
+    },
+    "build_suspense": {
+      "tier": 2,
+      "prosody_tag": "hushed",
+      "trigger_hints": [
+        "Right before whatever the punchline is",
+        "Tease before reveal — works for game show, news, sports, anything"
+      ],
+      "templates": [
+        "Wait for it.",
+        "Any moment now.",
+        "Hold on, {audience_address}."
+      ]
+    },
+    "ad_break": {
+      "tier": 2,
+      "prosody_tag": "smooth",
+      "trigger_hints": [
+        "Going to break, sponsor mention, intermission",
+        "Generic 'we'll be right back' beat"
+      ],
+      "templates": [
+        "We'll be right back.",
+        "Stay with us, {audience_address}.",
+        "Don't go anywhere."
+      ]
+    },
+    "self_aware_aside": {
+      "tier": 2,
+      "prosody_tag": "wry",
+      "trigger_hints": [
+        "Persona acknowledges the canned nature of the line",
+        "Use sparingly — the wink is the joke, not the whole show"
+      ],
+      "templates": [
+        "Whatever this is, it's {filler_descriptor}.",
+        "I'm told this is {filler_descriptor}."
+      ]
+    },
+    "transition": {
+      "tier": 2,
+      "prosody_tag": "even",
+      "trigger_hints": [
+        "Moving from one segment to the next",
+        "Filler between unrelated bits"
+      ],
+      "templates": [
+        "Moving on.",
+        "Speaking of which.",
+        "And now, {nondescript_show}."
+      ]
+    },
+    "show_close": {
+      "tier": 3,
+      "prosody_tag": "broadcast_warm",
+      "trigger_hints": [
+        "End of segment, sign-off, end credits"
+      ],
+      "templates": [
+        "{close_phrase}.",
+        "{close_phrase}, {audience_address}."
+      ]
+    }
+  },
+  "pools": {
+    "open_phrase": ["Welcome back", "Good to see you", "Here we go", "And we're live"],
+    "nondescript_show": ["the show", "today's segment", "the program", "this hour"],
+    "vague_subject": ["this one", "the next entry", "what we have here", "this beauty"],
+    "filler_descriptor": ["a real treat", "something special", "quite the spectacle", "worth a look"],
+    "wow_word": ["Wow", "Incredible", "Look at that", "Marvellous"],
+    "audience_address": ["folks", "everyone", "viewers at home"],
+    "close_phrase": ["That's all from us", "Until next time", "Thanks for watching", "We'll see you soon"]
+  },
+  "install": {
+    "max_atoms": 100
+  }
+}
