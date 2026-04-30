@@ -38,25 +38,6 @@ Live build: <https://www.scuffedepoch.com/zerotts-factory/>
 
 ---
 
-## Quick start (development)
-
-```bash
-git clone https://github.com/MushroomFleet/zerotts-factory-dev.git
-cd zerotts-factory-dev
-npm install
-npm run dev
-```
-
-Open <http://localhost:5173/zerotts-factory/>. The first load runs through SETUP — model + 26 voice files (~99 MB total) cache to your browser. Subsequent loads complete in under 3 seconds.
-
-### Requirements
-
-- Node 18+ (for Vite 5).
-- Chrome / Edge / Firefox (Safari is best-effort — `navigator.storage.persist()` prompts user).
-- The dev server sets `Cross-Origin-Opener-Policy: same-origin` and `Cross-Origin-Embedder-Policy: credentialless` automatically.
-
----
-
 ## How it works
 
 ### Voice derivation
@@ -87,85 +68,10 @@ Defaults to a 100-atom cap (~50 s render time, ~5 MB pool size). Cap is raisable
 
 ---
 
-## Building and deploying
-
-```bash
-npm run build
-```
-
-Output is in `dist/`. Includes a production-ready `.htaccess` for Apache hosts.
-
-### Apache (recommended)
-
-1. Upload `dist/*` (including `.htaccess`) to your `<base>/zerotts-factory/` path.
-2. Confirm `mod_headers` and `mod_mime` are enabled on the host.
-3. The `.htaccess` sets:
-   - `Cross-Origin-Opener-Policy: same-origin`
-   - `Cross-Origin-Embedder-Policy: credentialless`
-   - `Cross-Origin-Resource-Policy: same-origin`
-   - `application/wasm` MIME for `.wasm` files
-   - Long-cache for hashed assets, no-cache for `.html`
-   - SPA fallback that **does not** rewrite asset paths (so missing assets return real 404s instead of silent index.html corruption)
-
-### Other hosts (Netlify, Cloudflare Pages, Firebase Hosting, etc.)
-
-Configure the equivalent COOP/COEP/CORP headers and the `application/wasm` MIME type. Deploy `dist/` at a `/zerotts-factory/` base path (or change `base` in `vite.config.ts`).
-
-### Self-hosting the model + voices
-
-By default, model and voices are pulled from Hugging Face's `onnx-community/Kokoro-82M-v1.0-ONNX`. To self-host:
-
-1. Mirror `onnx/model_q8f16.onnx` and the contents of `voices/` to your CDN.
-2. Set `VITE_ASSET_BASE_URL` in `.env.production` to your CDN base (no trailing slash).
-3. The deployer is responsible for serving with `Access-Control-Allow-Origin: *` (or same-origin to the app).
-
----
-
-## Project structure
-
-```
-.
-├── src/
-│   ├── lib/                          # core (no DOM):
-│   │   ├── zfTypes.ts                #   shared types
-│   │   ├── zfHash.ts                 #   xxhash-wasm wrapper
-│   │   ├── zfArc.ts                  #   Zero-Quadratic arc derivation
-│   │   ├── zfVoiceDeriver.ts         #   name+seed -> VoiceSpec
-│   │   ├── zfProfile.ts              #   localStorage CRUD + migration
-│   │   ├── zfOrder.ts                #   Zod schema + atom enumeration
-│   │   ├── zfPool.ts                 #   in-memory AudioPool
-│   │   ├── zfFactory.ts              #   batch render loop
-│   │   ├── zfZipBuilder.ts           #   multi-archive splitter
-│   │   ├── zfWav.ts                  #   PCM -> WAV encoder
-│   │   └── zfSetup.ts                #   asset bootstrap (HF mirror)
-│   ├── kokoro/
-│   │   ├── kokoroClient.ts           #   onnxruntime-web wrapper
-│   │   ├── voiceTable.ts             #   per-voice byte assembler
-│   │   └── phonemize.ts              #   espeak-ng-wasm wrapper
-│   ├── hooks/                        # useSetup / useFactory / etc.
-│   ├── components/                   # tabs + sub-components
-│   └── styles/                       # factory.css + controls.css
-├── public/
-│   └── .htaccess                     # production Apache config
-├── examples/
-│   └── example-character-order.json  # reference order
-├── docs/
-│   ├── order-authoring-guide.md      # how to write an order JSON
-│   └── stage1-qa-fixes.md            # changelog / design notes
-├── skill/
-│   └── Zerotts-factory-builder.skill/ # Claude Code skill for order generation
-└── ZeroTTS-Factory-TINS.md           # full TINS specification
-```
-
----
-
 ## Documentation
 
 - **[`ZeroTTS-Factory-TINS.md`](./ZeroTTS-Factory-TINS.md)** — full system specification (TINS = "There Is No Source"; the README is so detailed any capable LLM can regenerate the implementation).
-- **[`docs/order-authoring-guide.md`](./docs/order-authoring-guide.md)** — how to write an order JSON: schema, slot syntax, tier strategy, pool design, atom-count math.
-- **[`examples/example-character-order.json`](./examples/example-character-order.json)** — reference order with 58 atoms across 8 contexts.
-- **[`docs/stage1-qa-fixes.md`](./docs/stage1-qa-fixes.md)** — design notes on the v0.2.0 QA-driven UX changes.
-- **[`skill/Zerotts-factory-builder.skill/`](./skill/Zerotts-factory-builder.skill/)** — Claude Code skill that generates order JSONs from codebases / plans / stories.
+
 
 ### Upstream specifications
 
